@@ -1,0 +1,12 @@
+server:
+  port: 7001
+spring:
+  config:
+    name: ravenbooks-product
+---
+spring:
+  profiles: local
+
+---
+spring:
+  profiles: cloud
