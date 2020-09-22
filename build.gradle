@@ -7,9 +7,8 @@ plugins {
 group = 'com.ravenbooks'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '14'
-def framework = 'spring'
-def eventuateTramVersion = '0.26.1.RELEASE'
-def messageBroker = 'kafka'
+def eventuateClientVersion='0.23.0.RELEASE'
+def eventuateLocalVersion='0.34.1.RELEASE'
 
 configurations {
     compileOnly {
@@ -29,11 +28,10 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
-//    compile "io.eventuate.tram.core:eventuate-tram-$framework-messaging:$eventuateTramVersion"
-//    compile "io.eventuate.tram.core:eventuate-tram-$framework-events:$eventuateTramVersion"
-//    compile "io.eventuate.tram.core:eventuate-tram-$framework-commands:$eventuateTramVersion"
-//    compile "io.eventuate.tram.core:eventuate-tram-$framework-jdbc-$messageBroker:$eventuateTramVersion"
 
+    compile "io.eventuate.client.java:eventuate-client-java-spring:$eventuateClientVersion"
+    compile "io.eventuate.local.java:eventuate-local-java-spring-jdbc:${eventuateLocalVersion}"
+    testCompile "io.eventuate.client.java:eventuate-client-java-spring-jdbc:$eventuateClientVersion"
     implementation "io.springfox:springfox-boot-starter:3.0.0"
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
