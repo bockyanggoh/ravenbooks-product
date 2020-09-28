@@ -7,8 +7,6 @@ plugins {
 group = 'com.ravenbooks'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '14'
-def eventuateClientVersion='0.23.0.RELEASE'
-def eventuateLocalVersion='0.34.1.RELEASE'
 
 configurations {
     compileOnly {
@@ -30,7 +28,8 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
-//    compile group: 'org.axonframework.extensions.kafka', name: 'axon-kafka-spring-boot-starter', version: '4.0-RC3'
+    compile group: 'org.axonframework.extensions.kafka', name: 'axon-kafka-spring-boot-starter', version: '4.0-RC3'
+    compile group: 'org.axonframework.extensions.kafka', name: 'axon-kafka-spring-boot-autoconfigure', version: '4.0-RC3'
     compile group: 'org.axonframework', name: 'axon-spring-boot-starter', version: '4.4.2'
     implementation "io.springfox:springfox-boot-starter:3.0.0"
     testImplementation('org.springframework.boot:spring-boot-starter-test') {

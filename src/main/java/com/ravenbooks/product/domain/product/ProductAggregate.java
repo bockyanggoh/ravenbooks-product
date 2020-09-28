@@ -60,6 +60,8 @@ public class ProductAggregate {
         apply(new ProductStocksUpdatedEvent(cmd.id, cmd.getStocksUpdateAmount()));
     }
 
+
+
     @CommandHandler
     public void handle(DeleteProductCommand cmd) {
         if (cmd.id.equals(id)) {

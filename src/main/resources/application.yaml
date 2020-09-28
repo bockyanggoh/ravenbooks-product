@@ -10,14 +10,6 @@ spring:
     console:
       enabled: true
       path: /h2-console
-  kafka:
-    producer:
-      bootstrap-servers:
-      retries: 3
-      acks: 1
-      client-id: product-${random.uuid}
-      security:
-        protocol: PLAINTEXT
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -30,11 +22,20 @@ axon:
     producer:
       retries: 0
       event-processor-mode: subscribing
+      transaction-id-prefix: product-${spring.profiles}
+    fetcher:
+      poll-timeout: 3000
     consumer:
-      client-id: product-${spring.profiles}
-  axonserver:
-    enabled: false
-
+      enable-auto-commit: true
+      auto-commit-interval: 3000
+      event-processor-mode: tracking
+    client-id: product-${spring.profiles}-${random.uuid}
+    properties:
+      security.protocol: PLAINTEXT
+#  axonserver:
+#    enabled: true
+#    client-id: product-${spring.profiles}-${random.uuid}
+#    commit-timeout: 1000
   serializer:
     events: jackson
 ---
